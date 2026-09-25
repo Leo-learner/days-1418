@@ -31,6 +31,7 @@ final class GameModel: ObservableObject {
     let engine: Engine
     private var archiveBack: Screen = .title
     private var lastTick = Date()
+    private var suspendedAt: Date?
     private var deltaTask: Task<Void, Never>?
 
     init(storyDirectory: URL) {
@@ -141,6 +142,26 @@ final class GameModel: ObservableObject {
         autosave = nil
         passage = nil
         screen = .title
+    }
+
+    // MARK: 前后台（iOS 用；Mac 版窗口不会被挂起，不调用）
+
+    /// 切到后台：把这段游戏时长记上，再写一次自动存档——之后被系统杀掉也不丢
+    func suspend() {
+        guard suspendedAt == nil else { return }
+        if screen == .game {
+            tick()
+            writeAutosave()
+        }
+        suspendedAt = Date()
+    }
+
+    /// 回到前台：后台那段时间不算游戏时长。只认 suspend() 之后的那一次，
+    /// 拉一下控制中心这种"没进后台"的打断不会把之前没记账的时间清掉
+    func resume() {
+        guard suspendedAt != nil else { return }
+        suspendedAt = nil
+        lastTick = Date()
     }
 
     // MARK: 内部
