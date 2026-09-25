@@ -1,0 +1,6 @@
+# 由 xcodegen / xcodebuild 生成
+Days1418.xcodeproj/
+Days1418/Info.plist
+build/
+# 本机的苹果开发者团队 ID（build-ios.sh device 读它），不公开
+.team

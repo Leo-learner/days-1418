@@ -1,0 +1,87 @@
+# 一千四百一十八天 · iOS 版（xcodegen 工程描述；.xcodeproj 由它生成，不进版本管理）
+# 引擎、存档、配色、氛围特效直接引用 ../Sources 里 Mac 版的文件，剧本引用 ../story，
+# 两个平台共用同一份剧本和引擎；iOS 只自己写界面层（Days1418/）。
+name: Days1418
+options:
+  bundleIdPrefix: local.leo
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: zh-Hans
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    # 签名团队不写在这里（仓库是公开的）：build-ios.sh device 从环境变量 DEVELOPMENT_TEAM 或 iOS/.team 读取
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+targets:
+  Days1418:
+    type: application
+    platform: iOS
+    sources:
+      - path: Days1418
+      # 与 Mac 版共用、不含 AppKit 的部分
+      - path: ../Sources/Expr.swift
+        group: Shared
+      - path: ../Sources/Story.swift
+        group: Shared
+      - path: ../Sources/Engine.swift
+        group: Shared
+      - path: ../Sources/Store.swift
+        group: Shared
+      - path: ../Sources/Checker.swift
+        group: Shared
+      - path: ../Sources/GameModel.swift
+        group: Shared
+      - path: ../Sources/Theme.swift
+        group: Shared
+      - path: ../Sources/Effects.swift
+        group: Shared
+      # 剧本目录原样拷进 App 包：Bundle.main/story/*.story
+      - path: ../story
+        type: folder
+        buildPhase: resources
+    info:
+      path: Days1418/Info.plist
+      properties:
+        CFBundleDisplayName: 一千四百一十八天
+        CFBundleDevelopmentRegion: zh-Hans
+        CFBundleLocalizations: [zh-Hans]
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSRequiresIPhoneOS: true
+        ITSAppUsesNonExemptEncryption: false
+        LSApplicationCategoryType: public.app-category.role-playing-games
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+        # 手机只竖屏（读长段文字），iPad 四个方向都行
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+    settings:
+      base:
+        PRODUCT_NAME: Days1418
+        PRODUCT_BUNDLE_IDENTIFIER: local.leo.days1418
+        MARKETING_VERSION: "1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SUPPORTS_MACCATALYST: NO
+        SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD: NO
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: NO
+schemes:
+  Days1418:
+    build:
+      targets:
+        Days1418: all
+    run:
+      config: Debug
+    archive:
+      config: Release
