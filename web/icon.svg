@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <!-- 和 Mac 版 Icon.swift 同一张图：一张打字机打过字的纪念章纸条，压着一枚红色的"1418"圆章 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E2C25"/><stop offset="1" stop-color="#141310"/></linearGradient>
+    <linearGradient id="pp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F0E6CC"/><stop offset="1" stop-color="#D9C9A4"/></linearGradient>
+  </defs>
+  <rect x="100" y="100" width="824" height="824" rx="186" fill="url(#bg)" stroke="#ffffff" stroke-opacity=".08" stroke-width="3"/>
+  <g transform="translate(472 452) rotate(-7)">
+    <rect x="-290" y="-190" width="580" height="380" rx="8" fill="url(#pp)"/>
+    <g fill="#2A241C" font-family="'American Typewriter', 'Courier New', Courier, monospace">
+      <text x="-246" y="-104" font-size="50" font-weight="700" xml:space="preserve">ГРОМОВ  И. С.</text>
+      <text x="-246" y="-40" font-size="36">1920 · г. КАЗАНЬ</text>
+    </g>
+    <rect x="-246" y="-4" width="420" height="3" fill="#2A241C" fill-opacity=".5"/>
+    <rect x="-246" y="17" width="330" height="3" fill="#2A241C" fill-opacity=".35"/>
+    <rect x="-246" y="38" width="380" height="3" fill="#2A241C" fill-opacity=".35"/>
+  </g>
+  <g transform="translate(682 682) rotate(14)" opacity=".93" fill="none" stroke="#C0281E">
+    <circle r="160" stroke-width="16"/>
+    <circle r="134" stroke-width="5"/>
+    <text y="36" text-anchor="middle" font-size="104" font-weight="700" fill="#C0281E" stroke="none" font-family="'American Typewriter', 'Courier New', Courier, monospace">1418</text>
+  </g>
+</svg>
