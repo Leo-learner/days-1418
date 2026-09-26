@@ -3,7 +3,7 @@
 文字冒险游戏，纯 HTML / CSS / JavaScript，无第三方依赖、无构建框架。1941.6.22—1945.5.9，苏德战争东线，
 玩家是一个从排长打到团长的红军军官；框架是 2011 年他的外孙女在白俄罗斯的赤杨林里挖出一枚写着外公名字的纪念章。
 
-> 这个分支只有网页版。Mac 版在 [`macos` 分支](https://github.com/Leo-learner/days-1418/tree/macos)，
+> 这是 `web` 分支：只有网页版。Mac 版在 [`macos` 分支](https://github.com/Leo-learner/days-1418/tree/macos)，
 > iPhone / iPad 版在 [`ios` 分支](https://github.com/Leo-learner/days-1418/tree/ios)。三个版本共用同一份剧本（`story/`），
 > 网页版的引擎是 Mac 版 Swift 引擎的逐行移植：同一个随机数种子、同样的选择，得到完全一样的结果。
 
