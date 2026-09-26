@@ -3,7 +3,7 @@
 原生 macOS 文字冒险游戏（SwiftUI，无第三方依赖）。1941.6.22—1945.5.9，苏德战争东线，
 玩家是一个从排长打到团长的红军军官；框架是 2011 年他的外孙女在白俄罗斯的赤杨林里挖出一枚写着外公名字的纪念章。
 
-> 这是 `macos` 分支：只有 Mac 版。iPhone / iPad 版在 [`ios` 分支](https://github.com/Leo-learner/days-1418/tree/ios)，和 Mac 版共用同一份引擎和剧本。
+> 这是 `macos` 分支：只有 Mac 版。iPhone / iPad 版在 [`ios` 分支](https://github.com/Leo-learner/days-1418/tree/ios)，和 Mac 版共用同一份引擎和剧本。网页版在 [`web` 分支](https://github.com/Leo-learner/days-1418/tree/web)，共用同一份剧本。
 
 - 四卷正文 + 尾声：包围圈（1941）→ 伏尔加（斯大林格勒）→ 大河（库尔斯克、第聂伯河、基辅、1944 白俄罗斯）→ 柏林（1945）→ 之后（1946—2012）
 - 325 个节点、约 10.7 万字正文、32 个结局（BE/NE/GE/SE/TE）、41 份可解密档案
