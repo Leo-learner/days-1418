@@ -1,8 +1,4 @@
-# build.sh 的产物（编译出的可执行文件、图标、打好的 .app）
+# tools/build.mjs 的产物（build/web/ 目录和 Game Hub 上传用的 zip）
 /build/
-# swift build / Xcode 打开 Package.swift 时生成
-/.build/
-/.swiftpm/
+node_modules/
 .DS_Store
-xcuserdata/
-*.xcresult
