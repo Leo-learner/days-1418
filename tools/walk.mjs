@@ -1,6 +1,7 @@
 // 按攻略文件走：node tools/walk.mjs tests/true_ending.walk [-story 目录=story] [-expect e30]
 // 攻略每行是选项文字里的一段（或 #序号）；@docs d06,d04 预置已解密档案；@endings e01 预置结局；@seed N 固定随机数
 import { readFileSync } from 'node:fs';
+import { pathToFileURL } from 'node:url';
 import { loadStoryDir } from './check.mjs';
 import { Engine, newMeta } from '../web/src/engine.js';
 
@@ -48,7 +49,8 @@ export function walk(story, text, log = console.log) {
   return { ok: true, engine };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// argv[1] 转成 URL 再比：路径里的空格、中文在 import.meta.url 里是百分号编码的；node -e 时 argv[1] 为空
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   const flag = f => { const i = args.indexOf(f); return i >= 0 ? args[i + 1] : null; };
   const script = args[0];

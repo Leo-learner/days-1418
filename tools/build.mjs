@@ -5,7 +5,7 @@
 import { cpSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { deflateRawSync } from 'node:zlib';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { loadStory } from '../web/src/story.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -111,4 +111,5 @@ export function build() {
   return { out, zipPath };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) build();
+// argv[1] 转成 URL 再比：路径里的空格、中文在 import.meta.url 里是百分号编码的；node -e 时 argv[1] 为空
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) build();

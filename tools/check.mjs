@@ -4,6 +4,7 @@
 // 2. 蒙特卡洛：带跨周目进度连续模拟 N 局，统计每个结局被走到几次
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { loadStory, isRegistry } from '../web/src/story.js';
 import { parseExpr, identifier } from '../web/src/expr.js';
 import { Engine, SplitMix, newMeta } from '../web/src/engine.js';
@@ -242,7 +243,8 @@ const argValue = (args, flag) => {
   return i >= 0 && i + 1 < args.length ? args[i + 1] : null;
 };
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+// argv[1] 转成 URL 再比：路径里的空格、中文在 import.meta.url 里是百分号编码的；node -e 时 argv[1] 为空
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const args = process.argv.slice(2);
   const dir = args[0] && !args[0].startsWith('-') ? args[0] : 'story';
   const runs = Number(argValue(args, '-runs') ?? 3000);
