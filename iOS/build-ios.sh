@@ -7,7 +7,10 @@
 #
 #   SIM="iPad Pro 11-inch (M5)" ./build-ios.sh    换一台模拟器
 set -euo pipefail
-cd "${0:A:h}"
+# 先把自己的路径解析成绝对路径再 cd：从仓库根目录用 iOS/build-ios.sh 调用时，$0 是相对路径，
+# cd 进 iOS/ 以后再解析就成了 iOS/iOS/build-ios.sh，下面加锁时重新执行自己会找不到文件
+SCRIPT="${0:A}"
+cd "${SCRIPT:h}"
 
 MODE="${1:-sim}"
 BUNDLE_ID="local.leo.days1418"
@@ -19,7 +22,7 @@ mkdir -p build
 # （2026-09-25 真出过一次：装上了却报 invalid code signature 打不开）。lockf 的锁跟着进程走，退出或 Ctrl-C 自动释放
 if [[ -z "${BUILD_IOS_LOCKED:-}" ]]; then
   lock_status=0
-  BUILD_IOS_LOCKED=1 lockf -s -t 0 build/.lock "${0:A}" "$@" || lock_status=$?
+  BUILD_IOS_LOCKED=1 lockf -s -t 0 build/.lock "$SCRIPT" "$@" || lock_status=$?
   if [[ $lock_status == 75 ]]; then
     echo "✘ 另一个 build-ios.sh 正在跑，等它结束再试"
   fi
